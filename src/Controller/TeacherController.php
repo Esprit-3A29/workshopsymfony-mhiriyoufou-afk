@@ -19,6 +19,6 @@ class TeacherController extends AbstractController
     #[Route("/show/{name}",name:"show_teacher")]
     public function showTeacher($name)
     {
-        return new Response("Bonjour " . $name);
+        return $this->render("teacher/showTeacher.html.twig",array("name" => $name));
     } 
 }

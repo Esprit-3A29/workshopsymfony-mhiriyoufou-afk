@@ -1,0 +1,51 @@
+<img style="max-width:50%;max-height:30%" src="{{asset("BillboardMentorHealth.png")}}"/>
+<h1>La liste des formations
+	{{c1}}
+	dans la salle
+	{{c2}}</h1>
+{% if tab_formations is empty %}
+	<h6>Pas de formations</h6>
+{% else %}
+	{% for i in tab_formations %}
+		{% if i.Description == 'formation theorique' %}
+			ref:
+			{{i.ref}}
+			titre:
+			{{i.Titre|upper}}
+			description:
+			{{i.Description}}
+			nb participants
+			{{i.nb_participants}}
+			Participer :
+			{% if i.nb_participants == 0 %}
+				<a href="{{path('app_reservation') }}">Participer</a>
+			{% else %}
+				complet
+			{% endif %}
+		{% endif %}
+		<br>
+	{% endfor %}
+{% endif %}
+
+{% set current = 0 %}
+{% set currentTitle = "" %}
+
+
+{% for i in tab_formations %}
+	{% if current < i.nb_participants %}
+		{% set current = i.nb_participants %}
+        {% set currentTitle = i.Titre %}
+	{% endif %}
+{% endfor %}
+
+La formation avec le plus grand nombre de participants = {{currentTitle}}
+
+{% set somme = 0 %}
+{% for i in tab_formations %}
+		{% set somme = somme + i.nb_participants %}
+{% endfor %}
+
+<br/>
+somme = {{somme}}
+
+
