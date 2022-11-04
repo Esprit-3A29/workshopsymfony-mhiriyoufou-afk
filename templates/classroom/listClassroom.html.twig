@@ -1,0 +1,9 @@
+{% for i in aff %}
+    id:{{i.id}}
+    name:{{i.name}}
+    <a href="{{ path ('listUpdate',{'id':i.id}) }}">Modifier</a>
+    <a href="{{ path ('listRemove',{'id':i.id}) }}">Supprimer</a>
+    <br/>
+{% endfor %}
+
+<a href="{{path ('listAdd')}}">Click To add</a>
